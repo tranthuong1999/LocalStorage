@@ -28,9 +28,17 @@ class index extends Component {
 
     handleSave() {
         const { name, country, students } = this.state;
+        const check = students.find(e => e.name === name.trim());
+        if (check) {
+            this.setState({
+                nameError: "Name already exits"
+            })
+            return;
+        }
+
         const student = {
-            name: name,
-            country: country
+            name: name.trim(),
+            country: country.trim(),
         }
         if (name.trim() === '') {
             this.setState({
@@ -47,12 +55,14 @@ class index extends Component {
 
         students.push(student)
         this.setState({
-            students
+            students,
+            name: '',
+            country: '',
         })
 
         localStorage.setItem('Student', JSON.stringify(students))
     }
-    handleClickDelete =(key) =>{
+    handleClickDelete = (key) => {
         const { students } = this.state
         console.log("student : ", students)
         students.splice(key, 1)
@@ -86,10 +96,10 @@ class index extends Component {
                     <input
                         value={name}
                         placeholder={'Name'}
-                        onChange={e => this.setState({ name: e.target.value })}
+                        onChange={e => this.setState({ name: e.target.value, nameError: '' })}
                     />
                 </div>
-                <span style={{ color: "red" }}> {nameError} </span>  
+                <span style={{ color: "red" }}> {nameError} </span>
                 <div>
                     <input
                         value={country}
@@ -97,7 +107,7 @@ class index extends Component {
                         onChange={e => this.setState({ country: e.target.value })}
                     />
                 </div>
-                <span  style={{ color: "red" }}> {countryError} </span>
+                <span style={{ color: "red" }}> {countryError} </span>
                 <div>
                     <Button style={{ marginTop: 10, position: "absolute" }} color="primary" onClick={() => this.handleSave()}>Save</Button>
                 </div>
