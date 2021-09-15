@@ -88,6 +88,10 @@ class index extends Component {
         })
     }
     render() {
+        // Yeu cau:
+        // - Add icon delete -> bỏ button delete đi 
+        // - Dùng Material Model, Material Table 
+        // - Phân trang: pagination: 
         const { students, name, country, nameError, countryError } = this.state;
         return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} >
             <div style={{ width: 500, height: 500, borderWidth: 1, borderColor: '#cacaca', backgroundColor: '#cacaca' }}>
