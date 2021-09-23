@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import { Button } from 'reactstrap';
+// import * as Material from '@material-ui/core';
+
 import { confirmAlert } from 'react-confirm-alert';
 import './index.css';
+
 
 class index extends Component {
 
@@ -46,6 +49,8 @@ class index extends Component {
             })
             return;
         }
+        //if name có ít nhất 1 ký tự đặc biệt 
+        //return 
         if (country.trim() === '') {
             this.setState({
                 countryError: " Please enter country"
